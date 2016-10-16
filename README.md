@@ -20,11 +20,3 @@ Bejelentkezett felhasználóknak:
 * Meglévő gépek adatainak módosítása
 * Meglévő gépek törlése
 * Kommentek írása
-
-**Nem funkcionális követelmények:**
-
-* Áttekinthetőség - Átlátható elrendezés, jó kinézet.
-* Biztonságos működés - Jelszavak használata bizonyos funkciók védelmére.
-* Karbantarthatóság, bővíthetőség
-* Gyors működés
-
