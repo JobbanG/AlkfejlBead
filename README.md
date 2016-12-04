@@ -20,3 +20,37 @@ Bejelentkezett felhasználóknak:
 * Meglévő gépek adatainak módosítása
 * Meglévő gépek törlése
 * Kommentek írása
+
+**Nem funkcionális követelmények:**
+
+* Áttekinthetőség - Átlátható elrendezés, jó kinézet.
+* Biztonságos működés - Jelszavak használata bizonyos funkciók védelmére.
+* Karbantarthatóság, bővíthetőség
+* Gyors működés
+
+**Használatieset-modell**
+
+
+
+**Végpontok**
+GET/: főoldal
+GET/login: bejelentkező oldal
+POST/login: bejelentkezési adatok elküldése
+GET/register: regisztrációs oldal
+POST/register: regisztrációs adatok elküldése
+GET/logout: kijelentkező oldal
+GET/comp: számítógép lista oldal
+GET/comp/create: új számítógép felvétele
+POST/comp/create: új számítógép felvételéhez szükséges adatok elküldése
+GET/comp/id: számítógép adatok
+POST/comp/id: új megjegyzés felvitele
+GET/comp/delete=id: számítógép törlése
+GET/comp/edit=id: számítógép módosítása
+POST/comp/edit=id: számítógép módosítása, adatok elküldése
+
+**Oldalvázlatok**
+
+
+
+**Adatmodell**
+
