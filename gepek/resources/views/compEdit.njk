@@ -1,0 +1,78 @@
+{% extends "master" %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+<script src="/scripts/smart_ingredients.js"></script>
+{% endblock %}
+
+{% block content %}
+<h2>Számítógép módosítása</h2>
+
+{% if old('errors') %}
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Hibák</h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      {% for error in old('errors') %}
+      <li>{{ error.message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+
+
+<form class="form-horizontal" method="post"
+  data-toggle="validator"
+>
+
+  {{ csrfField }}
+
+  <div class="form-group">
+    <label for="name" class="col-lg-2 control-label">Számítógép neve</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Számítógép neve" value="{{ comp.name }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-lg-2 control-label">Leírás</label>
+    <div class="col-lg-10">
+      <textarea class="form-control" rows="3" id="description" name="description">{{ comp.description }}</textarea>
+      <span class="help-block">Leírás</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-lg-2 control-label">Alaplap</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="motherboard" name="motherboard" placeholder="Alaplap" value="{{ comp.motherboard }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-lg-2 control-label">Processzor</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="processor" name="processor" placeholder="Processzor" value="{{ comp.processor }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-lg-2 control-label">Videókártya</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="video" name="video" placeholder="Videókártya" value="{{ comp.video }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-lg-2 control-label">Memória</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" id="memory" name="memory" placeholder="Memória" value="{{ comp.memory }}">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <button type="reset" class="btn btn-default">Mégsem</button>
+      <button type="submit" class="btn btn-primary">Küldés</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

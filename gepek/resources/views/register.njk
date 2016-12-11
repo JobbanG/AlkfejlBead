@@ -1,11 +1,15 @@
 {% extends "master" %}
 
 {% block content %}
-
+<ul>
+    {% for error in old('errors') %}
+      <li>{{ error.message }}</li>
+    {% endfor %}
+  </ul>
 <h2>Regisztráció</h2>
 
-<form class="form-horizontal" method="post">
-
+<form class="form-horizontal" method="POST">
+{{ csrfField }}
   <div class="form-group">
     <label for="username" class="col-lg-2 control-label">Felhasználónév</label>
     <div class="col-lg-10">
@@ -25,9 +29,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="password_confirm" class="col-lg-2 control-label">Jelszó megerősítése</label>
+    <label for="password2" class="col-lg-2 control-label">Jelszó megerősítése</label>
     <div class="col-lg-10">
-      <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Jelszó megerősítése" value="">
+      <input type="password" class="form-control" id="password2" name="password2" placeholder="Jelszó megerősítése" value="">
     </div>
   </div>
   <div class="form-group">

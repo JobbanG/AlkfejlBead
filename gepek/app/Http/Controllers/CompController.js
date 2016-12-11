@@ -4,51 +4,139 @@ const Database = use('Database')
 const User = use('App/Model/User')
 const Computer = use('App/Model/Computer')
 const Component = use('App/Model/Component')
-//const Validator = use('Validator')
+const Validator = use('Validator')
 
 class CompController {
-     * index(request, response) {
-       yield response.sendView('main');
+     * index(req, res) {
+       yield res.sendView('main');
      }
 
-    * create (request, response) {
-      //Const categories = yield Category.all()
-      yield response.sendView('compCreate'//, {
-      //categories: categories.toJSON()
-    //}
-    );
+    * create (req, res) {
+      yield res.sendView('compCreate');
     }
 
-     * doCreate (request, response) {
-    const computerData = request.except('_csrf');
+     * doCreate (req, res) {
+        var post = req.post();
+        var computerData = {
+            name:post.name,
+            description:post.description,
+            motherboard:post.motherboard,
+            processor:post.processor,
+            video:post.video,
+            memory:post.memory,
+            user_id:req.currentUser.id
+        };
 
     const rules = {
       name: 'required',
-      description: 'required'
+      motherboard: 'required',
+      processor: 'required',
+      video: 'required',
+      memory: 'required'
     };
+    const validation = yield Validator.validateAll(computerData, rules)
 
-    //const validation = yield Validator.validateAll(recipeData, rules)
-
-    /*if (validation.fails()) {
-      yield request
+    if (validation.fails()) {
+      yield req
         .withAll()
         .andWith({errors: validation.messages()})
         .flash()
-      response.redirect('back')
+      res.redirect('back')
       return
-    }*/
+    }
 
-    computerData.user_id = request.currentUser.id
     const computer = yield Computer.create(computerData)
-    // response.send(recipe.toJSON())
-    response.redirect('/')
+    res.redirect('/')
   }
 
-   * search (request, response) {
-    const page = Math.max(1, request.input('p'))
+   * edit (req, res) {
+    const id = req.param('id');
+    const comp = yield Computer.find(id);
+
+    if (req.currentUser.id !== comp.user_id) {
+      res.unauthorized('Access denied.')
+      return
+    }
+
+    yield res.sendView('compEdit', {
+      comp: comp.toJSON()
+    });
+  }
+
+  * doEdit (req, res) {
+    const post = req.post();
+    const computerData = {
+        name:post.name,
+        description:post.description,
+        motherboard:post.motherboard,
+        processor:post.processor,
+        video:post.video,
+        memory:post.memory,
+        user_id:req.currentUser.id
+    };
+
+    const rules = {
+      name: 'required',
+      motherboard: 'required',
+      processor: 'required',
+      video: 'required',
+      memory: 'required'
+    };
+
+    const validation = yield Validator.validateAll(computerData, rules)
+
+    if (validation.fails()) {
+      yield req
+        .withAll()
+        .andWith({errors: validation.messages()})
+        .flash()
+      res.redirect('back')
+      return
+    }
+
+    const id = req.param('id');
+    const comp = yield Computer.find(id);
+    
+    comp.name = computerData.name;
+    comp.description = computerData.description;
+    comp.motherboard = computerData.motherboard;
+    comp.processor = computerData.processor;
+    comp.video = computerData.video;
+    comp.memory = computerData.memory;
+    comp.user_id = computerData.user_id;
+
+    yield comp.save()
+    
+    res.redirect('/')
+  }
+
+  * show (req, res) {
+    const id = req.param('id');
+    const comp = yield Computer.find(id);
+
+    yield res.sendView('compShow', {
+      comp: comp.toJSON()
+    })
+  }
+
+  * doDelete (req, res) {
+    const id = req.param('id');
+    const comp = yield Computer.find(id);
+
+    if (req.currentUser.id !== comp.user_id) {
+      res.unauthorized('Access denied.')
+      return
+    }
+
+    yield comp.delete()
+    res.redirect('/')
+  }
+
+  * search (req, res) {
+    const page = Math.max(1, req.input('p'))
     const filters = {
-      compName: request.input('compName') || '',
-      createdBy: request.input('createdBy') || 0
+      compName: req.input('compName') || '',
+      createdBy: req.input('createdBy') || 0
     }
 
     const computers = yield Computer.query()
@@ -61,12 +149,13 @@ class CompController {
 
     const users = yield User.all()
 
-    yield response.sendView('compSearch', {
+    yield res.sendView('compSearch', {
       computers: computers.toJSON(),
       users: users.toJSON(),
       filters
     })
-   }
+  }
+  
 }
 
 module.exports = CompController
