@@ -4,9 +4,9 @@ Készítette: Jobban Gergő, TSGWZ6
 
 **Alap ötlet:**
 
-A program célja, hogy a felhasználók a szerintük legjobb / kedvenc számítógépüket összerakhassák, és megoszthassák másokkal, valamint megbeszélhetik melyik alkatrészt miért választották. Ezzel segíthetnek másoknak, akik új gépet szeretnének venni.
+A program célja, hogy a felhasználók a szerintük legjobb / kedvenc számítógépüket összerakhatják, és megoszthatják másokkal, ezzel segíthetnek másoknak, akik új gépet szeretnének venni.
 A vendégek megnézhetik a már kész gépeket, de regisztrációra, majd bejelentkezésre lesz szükségük a további funkciók használatához.
-Bejelentkezett felhasználók felvehetnek gépeket, vagy a már meglévő, saját gépeiket módosíthatják vagy törölhetik. Ezen kívül bármely géphez írhatnak megjegyzést.
+Bejelentkezett felhasználók felvehetnek gépeket, vagy a már meglévő, saját gépeiket módosíthatják vagy törölhetik.
 
 **Funkcionális követelmények:**
 
@@ -19,7 +19,6 @@ Bejelentkezett felhasználóknak:
 * Új gép felvétele
 * Meglévő gépek adatainak módosítása
 * Meglévő gépek törlése
-* Kommentek írása
 
 **Nem funkcionális követelmények:**
 
@@ -30,7 +29,7 @@ Bejelentkezett felhasználóknak:
 
 **Használatieset-modell**
 
-
+![](pictures/nomnoml.png)
 
 **Végpontok**
 * GET/: főoldal
@@ -39,18 +38,70 @@ Bejelentkezett felhasználóknak:
 * GET/register: regisztrációs oldal
 * POST/register: regisztrációs adatok elküldése
 * GET/logout: kijelentkező oldal
-* GET/comp: számítógép lista oldal
-* GET/comp/create: új számítógép felvétele
-* POST/comp/create: új számítógép felvételéhez szükséges adatok elküldése
-* GET/comp/id: számítógép adatok
-* POST/comp/id: új megjegyzés felvitele
-* GET/comp/delete=id: számítógép törlése
-* GET/comp/edit=id: számítógép módosítása
-* POST/comp/edit=id: számítógép módosítása, adatok elküldése
+* GET/computers: számítógép lista oldal
+* GET/computers/create: új számítógép felvétele
+* POST/computers/create: új számítógép felvételéhez szükséges adatok elküldése
+* GET/computers/id: számítógép adatok
+* GET/computers/id/delete: számítógép törlése
+* GET/computers/id/edit: számítógép módosítása
+* POST/computers/id/edit: számítógép módosítása, adatok elküldése
 
 **Oldalvázlatok**
 
+Főoldal:
 
+![](pictures/main.jpg)
 
-**Adatmodell**
+Regisztráció:
 
+![](pictures/register.jpg)
+
+Belépés:
+
+![](pictures/login.jpg)
+
+Böngészés:
+
+![](pictures/list.jpg)
+
+Új gép:
+
+![](pictures/create.jpg)
+
+Megtekintés:
+
+![](pictures/check.jpg)
+
+Szerkesztés:
+
+![](pictures/edit.jpg)
+
+**Designtervek**
+
+Főoldal:
+
+![](pictures/finalmain.jpg)
+
+Regisztráció:
+
+![](pictures/finalregister.jpg)
+
+Belépés:
+
+![](pictures/finallogin.jpg)
+
+Böngészés:
+
+![](pictures/finallist.jpg)
+
+Új gép:
+
+![](pictures/finalcreate.jpg)
+
+Megtekintés:
+
+![](pictures/finalcheck.jpg)
+
+Szerkesztés:
+
+![](pictures/finaledit.jpg)
