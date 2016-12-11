@@ -80,28 +80,28 @@ Szerkesztés:
 
 Főoldal:
 
-![](pictures/finalmain.jpg)
+![](pictures/finalmain.png)
 
 Regisztráció:
 
-![](pictures/finalregister.jpg)
+![](pictures/finalregister.png)
 
 Belépés:
 
-![](pictures/finallogin.jpg)
+![](pictures/finallogin.png)
 
 Böngészés:
 
-![](pictures/finallist.jpg)
+![](pictures/finallist.png)
 
 Új gép:
 
-![](pictures/finalcreate.jpg)
+![](pictures/finalcreate.png)
 
 Megtekintés:
 
-![](pictures/finalcheck.jpg)
+![](pictures/finalcheck.png)
 
 Szerkesztés:
 
-![](pictures/finaledit.jpg)
+![](pictures/finaledit.png)
